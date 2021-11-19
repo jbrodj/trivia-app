@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Dynamically populate category dropdown from API endpoint. 
 const CategoryDropdown = props => {
-    const { apiResError, setApiResError} = props
+    const { apiResError, setApiResError, handleCategoryChange} = props
 
     // State to hold the categories array
     const [categories, setCategories] = useState([]);
@@ -24,7 +24,7 @@ const CategoryDropdown = props => {
             console.log(error.message)
         })
         // Cancel useEffect subscription
-    },[]);
+    },[setApiResError]);
 
     // if (apiResError) {
     //     return (
@@ -39,8 +39,12 @@ const CategoryDropdown = props => {
     return (
         <>
             <label htmlFor="questionCategory" className="sr-only">Category</label>
-            <select name="question category" id="questionCategory">
-                <option value="">Select a category</option>
+            <select 
+                name="question category" 
+                id="questionCategory"
+                onChange={handleCategoryChange}
+            >
+                <option value="">Any category</option>
                 {/* Map the state array to the option elements */}
                 {
                     categories.map( (individualCategory) => {

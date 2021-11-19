@@ -15,13 +15,18 @@ import QueryForm from './Components/QueryForm';
 
 function App() {
 
-  // State for 
+  // State for login/signup data
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  
   // User state will be used to track and display the current user
   const [user, setUser] = useState({})
+  
+  // State to hold array of current trivia game questions
+  const [ questionArray, setQuestionArray ] = useState([])
+
 
   // Handle user login change using firebase's auth state change tracker.
   onAuthStateChanged(auth, (currentUser) => {
@@ -119,7 +124,7 @@ function App() {
     return (
       <>
         <Header user={user} logout={logout} />
-        <QueryForm />
+        <QueryForm setQuestionArray={setQuestionArray} questionArray={questionArray}/>
       </>
     )
   }
