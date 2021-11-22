@@ -1,5 +1,7 @@
 import './App.css';
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 // Firebase function imports
 import {
     // For tracking change in auth state to keep track of logged in user
@@ -10,8 +12,11 @@ import {
   signOut
 } from 'firebase/auth'
 import { auth } from './firebase-config'
+
+// Components
 import Header from './Components/Header';
 import QueryForm from './Components/QueryForm';
+import Game from './Components/Game';
 
 function App() {
 
@@ -77,54 +82,63 @@ function App() {
   return (
     <div className="wrapper">
       <Header user={user} logout={logout} />
-      <div className="authForm">
-        <form>
-          <h3>I'm a new user!</h3>
-          <label 
-            htmlFor="registerEmail" className="sr-only">Email</label>
-          <input 
-            type="text" 
-            placeholder="Email..." 
-            id="registerEmail" 
-            onChange={(event) => {setRegisterEmail(event.target.value)}}
-          />
-          <label htmlFor="registerPassword" className="sr-only">Password</label>
-          <input 
-            type="text" 
-            placeholder="Password..." 
-            id="registerPassword"
-            onChange={(event) => {setRegisterPassword(event.target.value)}}
-            />
-          <button onClick={register}>Create Account</button>
-        </form>
+      <main>
+        <div className="authForm">
+          <form>
+            <h3>I'm a new user!</h3>
+            <label 
+              htmlFor="registerEmail" className="sr-only">Email</label>
+            <input 
+              type="text" 
+              placeholder="Email..." 
+              id="registerEmail" 
+              onChange={(event) => {setRegisterEmail(event.target.value)}}
+              />
+            <label htmlFor="registerPassword" className="sr-only">Password</label>
+            <input 
+              type="text" 
+              placeholder="Password..." 
+              id="registerPassword"
+              onChange={(event) => {setRegisterPassword(event.target.value)}}
+              />
+            <button onClick={register}>Create Account</button>
+          </form>
 
-        <form>
-          <h3>I have an account!</h3>
-          <label htmlFor="loginEmail" className="sr-only">Email</label>
-          <input 
-            type="text" 
-            placeholder="Email..." 
-            id="loginEmail" 
-            onChange={(event) => {setLoginEmail(event.target.value)}}
-          />
-          <label htmlFor="loginPassword" className="sr-only">Password</label>
-          <input 
-            type="text" 
-            placeholder="Password..." 
-            id="loginPassword"
-            onChange={(event) => {setLoginPassword(event.target.value)}}
-          />
-          <button onClick={login}>Sign In</button>
-        </form>
-
-      </div>
+          <form>
+            <h3>I have an account!</h3>
+            <label htmlFor="loginEmail" className="sr-only">Email</label>
+            <input 
+              type="text" 
+              placeholder="Email..." 
+              id="loginEmail" 
+              onChange={(event) => {setLoginEmail(event.target.value)}}
+              />
+            <label htmlFor="loginPassword" className="sr-only">Password</label>
+            <input 
+              type="text" 
+              placeholder="Password..." 
+              id="loginPassword"
+              onChange={(event) => {setLoginPassword(event.target.value)}}
+              />
+            <button onClick={login}>Sign In</button>
+          </form>
+        </div>
+      </main>
     </div>
   );
   } else {
     return (
       <>
-        <Header user={user} logout={logout} />
-        <QueryForm setQuestionArray={setQuestionArray} questionArray={questionArray}/>
+      <Header user={user} logout={logout} />
+        <main>
+          {
+            questionArray === null ?
+            <QueryForm setQuestionArray={setQuestionArray} questionArray={questionArray}/>
+            : 
+            <Game questionArray={questionArray} setQuestionArray={setQuestionArray}/>
+          }
+
+            </main>
       </>
     )
   }

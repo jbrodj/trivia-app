@@ -46,6 +46,9 @@ const QueryForm = props => {
                 difficulty: questionDifficulty
             }
         }).then((response) => {
+            // if (response.status > 200 && response.status < 299) {
+            //     console.log('ohhh yeah')
+            // }
             setQuestionArray(response.data.results)
             // Reset user input state to default after query submit
             // setQuestionAmount(null);
@@ -53,12 +56,13 @@ const QueryForm = props => {
             // setQuestionDifficulty(null);
 
             console.log(response.data.results)
-            console.log(questionArray)
 
 
         })
     }
-
+    
+    console.log(questionArray)
+    
     if (apiResError) {
         return <ApiErrorMessage />
     }
