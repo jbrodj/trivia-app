@@ -3,11 +3,13 @@ const Header = props => {
 
     return (
         <header>
-            <h1>Trivia Game</h1>
-            <div className="userInfo">
-                <h4>Logged in as: </h4>
-                <button onClick={props.logout}>Sign out</button>
-                {props.user?.email}
+            <div className="wrapper">
+                <h1>Trivia Game</h1>
+                <div className="userInfo">
+                    <h4>Logged in as: {props.user?.email}</h4>
+                    
+                    <button onClick={props.logout}>Sign out</button>
+                </div>
             </div>
         </header>
         

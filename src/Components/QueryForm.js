@@ -5,7 +5,8 @@ import CategoryDropdown from "./CategoryDropdown";
 
 const QueryForm = props => {
 
-    const { questionArray, setQuestionArray } = props
+    const { questionArray, setQuestionArray, gameQuestions, setGameQuestions } = props
+
     // State holding initial API call status for error handling - null will make app run normally.
     const [apiResError, setApiResError] = useState(null)
 
@@ -28,40 +29,55 @@ const QueryForm = props => {
     const handleDifficultyChange = event => {
         setQuestionDifficulty(event.target.value)
     }
-    // console.log(questionAmount)
-    // console.log(questionCategory)
-    // console.log(questionDifficulty)
 
     // Form submission
     const handleSubmit = event => {
         event.preventDefault()
 
+        // Set baseline parameters for the axios params object
+        const params = {
+            amount: questionAmount,
+            category: questionCategory,
+            difficulty: questionDifficulty
+        }
+
+        // Function to selectively delete key/value pairs from the axios params object if the user leaves any non-required fields empty.
+        const deleteParams = () => {
+            if (questionCategory === '') {
+                delete params.category
+            }
+            if (questionDifficulty === '') {
+                delete params.difficulty
+            }
+        }
+
+        deleteParams()
+
         axios({
             url: "https://opentdb.com/api.php",
             method: "GET",
             dataResponse: "JSON",
-            params: {
-                amount: questionAmount,
-                category: questionCategory,
-                difficulty: questionDifficulty
-            }
+            params: params
         }).then((response) => {
             // if (response.status > 200 && response.status < 299) {
-            //     console.log('ohhh yeah')
+            //     console.log('no good')
             // }
             setQuestionArray(response.data.results)
+            setGameQuestions(questionArray)
             // Reset user input state to default after query submit
-            // setQuestionAmount(null);
-            // setQuestionCategory(null);
-            // setQuestionDifficulty(null);
+            setQuestionAmount(null);
+            setQuestionCategory(null);
+            setQuestionDifficulty(null);
 
-            console.log(response.data.results)
-
+            // console.log(response.data.results)
 
         })
+
+        // return () => {
+        //     console.log('end api call')
+        // }
     }
     
-    console.log(questionArray)
     
     if (apiResError) {
         return <ApiErrorMessage />

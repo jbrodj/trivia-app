@@ -23,7 +23,10 @@ const CategoryDropdown = props => {
             setApiResError(error.message)
             console.log(error.message)
         })
-        // Cancel useEffect subscription
+        // Cancel axios subscription
+        return () => {
+            console.log('dropdown useEffect cleanup')
+        }
     },[setApiResError]);
 
     // if (apiResError) {

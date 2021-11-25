@@ -12,10 +12,47 @@ html {
   font-size: 20px;
 }
 
+h1, h2, h3, h4, p, a, ul, li, button {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
 .wrapper {
   width: 80%;
   margin: 0 auto;
 }
+
+/* === HEADER STYLES === */
+
+header {
+  height: 10rem;
+}
+
+header .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+header .userInfo {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* === GENERAL MAIN STYLES === */
+
+main {
+  text-align: center;
+}
+
+/* === LOGIN STYLES === */
 
 .authForm {
   text-align: center;
@@ -31,4 +68,32 @@ html {
 
 .authForm input {
   margin-bottom: 1rem;
+}
+
+/* === QUESTION IN GAME === */
+
+.individualQuestion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: blanchedalmond;
+}
+
+.individualQuestion h3 {
+  margin: 1rem;
+}
+
+.questionInfo {
+  width: 100%;
+  display: flex;
+  order: -1;
+  justify-content: space-between;
+}
+
+.answers {
+  display: flex;
 }

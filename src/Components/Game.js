@@ -1,12 +1,31 @@
+import { useEffect, useState } from "react/cjs/react.development"
+
 const Game = props => {
 
-    const { questionArray, setQuestionArray } = props
+    const { questionArray, setQuestionArray, gameQuestions, setGameQuestions } = props
 
-    const newGameHandler = () => {
+    const [ currentQuestion, setCurrentQuestion ] = useState({})
+
+    // const { question, category, difficulty, correct_answer, incorrect_answers } = questionArray[0]
+
+    // Initialize gameQuestions from original questionArray
+    // console.log(questionArray[0])
+
+
+    // console.log(questionArray[0].correct_answer)
+    // console.log(questionArray[0].incorrect_answers)
+
+    // useEffect(() => {
+    //     setGameQuestions(gameQuestions)
+    //     console.log('use effect')
+    // }, [questionArray])
+    // console.log(gameQuestions)
+
+    function newGameHandler() {
         setQuestionArray(null)
     }
 
-    const questionCounter = 0
+
 
     return (
         <>
@@ -14,14 +33,13 @@ const Game = props => {
             <button onClick={newGameHandler}>New game</button>
             <section className='questionSection'>
                 {
-                    questionArray.map((individualQuestion) => {
+                    questionArray.map((individualQuestion, index) => {
                         return (
-                            <>
-                                <li>
+                                <li className="individualQuestion" key={index}>
                                     <h3>
                                         {individualQuestion.question}
                                     </h3>
-                                    <ul>
+                                    <ul className="questionInfo">
                                         <li>
                                             {individualQuestion.category}
                                         </li>
@@ -30,10 +48,10 @@ const Game = props => {
                                         </li>
                                     </ul>
                                     <ul className="answers">
-                                        
+                                        {individualQuestion.correct_answer}
+                                        {individualQuestion.incorrect_answers}
                                     </ul>
                                 </li>
-                            </>
                         )
                     })
                 }

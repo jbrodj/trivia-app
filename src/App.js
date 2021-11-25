@@ -31,6 +31,8 @@ function App() {
   
   // State to hold array of current trivia game questions
   const [ questionArray, setQuestionArray ] = useState([])
+  // State to hold the disposable questions that will be thrown out as user answers each question. Separate so that questionArray can hold onto the original unmodified list of questions. 
+  const [ gameQuestions, setGameQuestions ] = useState([])
 
 
   // Handle user login change using firebase's auth state change tracker.
@@ -133,9 +135,16 @@ function App() {
         <main>
           {
             questionArray === null ?
-            <QueryForm setQuestionArray={setQuestionArray} questionArray={questionArray}/>
+            <QueryForm 
+              setQuestionArray={setQuestionArray} 
+              questionArray={questionArray}
+              gameQuestions={gameQuestions}
+              setGameQuestions={setGameQuestions}
+            />
             : 
-            <Game questionArray={questionArray} setQuestionArray={setQuestionArray}/>
+            <ul>
+              <Game questionArray={questionArray} setQuestionArray={setQuestionArray}/>
+            </ul>
           }
 
             </main>
