@@ -23,9 +23,10 @@ const CategoryDropdown = props => {
             setApiResError(error.message)
             console.log(error.message)
         })
-        // Cancel axios subscription
+        // Cancel axios subscription - not sure this is working though
+            // Get error: Can't perform state update on unmounted component. 
         return () => {
-            console.log('dropdown useEffect cleanup')
+            // console.log('dropdown useEffect cleanup')
         }
     },[setApiResError]);
 

@@ -63,20 +63,23 @@ const QueryForm = props => {
             //     console.log('no good')
             // }
             setQuestionArray(response.data.results)
-            setGameQuestions(questionArray)
+            setGameQuestions(response.data.results)
             // Reset user input state to default after query submit
             setQuestionAmount(null);
             setQuestionCategory(null);
             setQuestionDifficulty(null);
 
-            // console.log(response.data.results)
-
+            // console.log(response.data.results, 'response.data.results')
+            
+            
         })
-
+        
         // return () => {
-        //     console.log('end api call')
-        // }
-    }
+            //     console.log('end api call')
+            // }
+            // console.log(questionArray, 'QA')
+            // console.log(gameQuestions, 'GQ')
+        }
     
     
     if (apiResError) {

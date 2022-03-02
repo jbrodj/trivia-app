@@ -6,8 +6,7 @@ const Header = props => {
             <div className="wrapper">
                 <h1>Trivia Game</h1>
                 <div className="userInfo">
-                    <h4>Logged in as: {props.user?.email}</h4>
-                    
+                    <p>Logged in as: {props.user?.email}</p>
                     <button onClick={props.logout}>Sign out</button>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-
 // Function to run if API call to category dropdown endpoint fails.
 const ApiErrorMessage = () => {
 

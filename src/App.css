@@ -22,7 +22,8 @@ ul {
 }
 
 .wrapper {
-  width: 80%;
+  width: 60%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -41,9 +42,14 @@ header .wrapper {
 }
 
 header .userInfo {
+  display: flex;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 1rem;
+}
+
+.userInfo p {
+  margin-right: 0.5rem;
 }
 
 /* === GENERAL MAIN STYLES === */
@@ -70,6 +76,21 @@ main {
   margin-bottom: 1rem;
 }
 
+/* IN-GAME HEADING CONTAINER */ 
+.gameHeading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.gameButtons {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 /* === QUESTION IN GAME === */
 
 .individualQuestion {
@@ -77,7 +98,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  /* width: 60%; */
   margin: 2rem auto;
   padding: 2rem;
   background-color: blanchedalmond;
